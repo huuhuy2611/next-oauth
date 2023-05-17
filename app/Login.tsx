@@ -3,12 +3,14 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { UserCard } from "./userCard";
 
 export default function Login() {
-  // get session from nextAuth
   const { data: session } = useSession();
-  console.log(session);
-  // useSession uses React Context
+  console.log(
+    111,
+    session,
+    process.env.FACEBOOK_CLIENT_ID,
+    process.env.FACEBOOK_CLIENT_SECRET
+  );
 
-  // if the user exists -> show a Sign Out button and their information
   if (session) {
     return (
       <>
@@ -17,7 +19,7 @@ export default function Login() {
           type="button"
           className="btn btn-primary"
         >
-          Sign Out of Google
+          Sign Out
         </button>
         {/* Pass session info to server component */}
         <UserCard user={session?.user} />
@@ -31,7 +33,7 @@ export default function Login() {
           type="button"
           className="btn btn-primary"
         >
-          Sign In with Google
+          Sign In
         </button>
       </>
     );
